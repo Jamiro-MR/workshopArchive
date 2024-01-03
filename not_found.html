@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not Found</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <style>
+        /* styles */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+            background-color: #fdfdfc; /* Set the background color */
+            margin: 0; /* Remove default margin to ensure full width */
+        }
+        .not-found-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Make the container full height of the viewport */
+        }
+        .not-found-gif {
+            width: 200px; /* Adjust the width of the gif */
+            height: auto; /* Maintain aspect ratio for the gif */
+            margin-bottom: 20px; /* Add some margin below the gif */
+        }
+        h1 {
+            color: #e74c3c; /* Red color for the heading */
+            font-size: 24px; /* Increase font size for the heading */
+            margin-bottom: 10px; /* Add some margin below the heading */
+        }
+        p {
+            font-size: 18px; /* Increase font size for better readability */
+            margin-top: 0; /* Remove top margin for the paragraph */
+        }
+        img {
+            width: 100%; /* Make the image fill the container width */
+            max-width: 300px; /* Limit the maximum width of the image */
+            height: auto; /* Maintain aspect ratio for the gif */
+            margin-bottom: 20px; /* Add some margin below the gif */
+        }
+        /* Button Styles */
+        .back-to-home-btn {
+            background-color: #3498db; /* Blue color for the button */
+            color: #fff; /* White text color for the button */
+            padding: 10px 20px; /* Add padding to the button */
+            text-decoration: none; /* Remove default link styling */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Add border radius for a rounded look */
+            cursor: pointer; /* Change cursor on hover */
+            font-size: 16px; /* Set font size */
+            margin-top: 10px; /* Adjusted margin to bring the button closer */
+        }
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .not-found-gif {
+                width: 150px; /* Adjust the width of the gif for smaller screens */
+            }
+            img {
+                max-width: 100%; /* Make the image fill the container width on smaller screens */
+            }
+            h1 {
+                font-size: 20px; /* Adjust font size for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://c.tenor.com/JQS4KDCJkKoAAAAC/tenor.gif" alt="Gif">
+    <h1>Oops! Page Not Found</h1>
+    <p>The requested page seems to have taken a detour to the fun zone!</p>
+    <!-- Button to Go Back to Home -->
+    <a href="/" class="back-to-home-btn">Go Back to Home</a>
+</body>
+</html>
