@@ -63,6 +63,7 @@
                 font-size: 20px;
                 /* Adjust font size for smaller screens */
             }
+
             .navbar-logo {
                 width: 25px;
                 /* Adjusted the width of the logo for smaller screens */
@@ -118,6 +119,19 @@
             max-width: 100%;
             /* Ensure responsiveness within modal */
         }
+        /* Random Image Button Styles */
+        #randomImageButton {
+            border: none;
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+        }
+        #randomImageButton img {
+            width: 50px;
+            height: auto;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -145,6 +159,14 @@
             </ul>
         </div>
     </nav>
+    <!-- Random Image Button -->
+    <div class="text-center mt-4">
+        <button id="randomImageButton" onclick="openRandomImageModal()">
+            <img
+                src="https://raw.githubusercontent.com/Jamiro-MR/workshopArchive/main/imgs/pineblob.png?token=GHSAT0AAAAAACMJWOSIEZXXGCDMKEVPNCSKZMVYAQA"
+                alt="Random Image">
+        </button>
+    </div>
     <!-- Gallery Section -->
     <div class="container mt-4">
         <div class="gallery-container" id="dynamicGallery">
@@ -172,7 +194,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <!-- JavaScript to set modal title dynamically and dynamically generate gallery images from the text file -->
+    <!-- JavaScript to dynamically generate gallery images from the text file -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Specify the path to your text file
@@ -210,6 +232,13 @@
             var modal = $(this);
             modal.find('.modal-body img').attr('src', image.attr('src'));
         });
+        function openRandomImageModal() {
+            var galleryImages = document.querySelectorAll('.gallery-image');
+            if (galleryImages.length > 0) {
+                var randomIndex = Math.floor(Math.random() * galleryImages.length);
+                $(galleryImages[randomIndex]).click();
+            }
+        }
     </script>
 </body>
 </html>
