@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +8,38 @@
     <!-- Bootstrap CSS links -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="/style.css" rel="stylesheet" type="text/css" media="all">
-    <!-- Styles -->
+
+    <!-- Old Webpage Styles -->
     <style>
         body {
             background-color: #ffffff; /* White background color */
-            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; /* Fun and playful font */
+            font-family: 'Roboto', sans-serif; /* Roboto font */
             color: #000000; /* Black text color */
             line-height: 1.6; /* Improved readability */
             margin: 0;
         }
+
         .navbar {
             background-color: #ffcc00; /* Yellow background color for the navbar */
         }
+
         .navbar-brand {
             color: #000000 !important; /* Black text color for navbar links */
             display: flex;
             align-items: center; /* Align text and image vertically */
             font-size: 24px; /* Larger font size for the title */
         }
+
         .navbar-logo {
-            width: 40px; /* Adjusted the width of the logo */
+            width: 30px; /* Adjusted the width of the logo */
             height: auto; /* Maintain aspect ratio for the logo */
             margin-right: 10px; /* Add some spacing between the logo and text */
         }
+
         .navbar-toggler-icon {
             background-color: #000000; /* Black color for the navbar toggler icon */
         }
+
         .container {
             background-color: #f0f0f0; /* Light gray background color for the content section */
             border-radius: 8px;
@@ -40,20 +47,42 @@
             padding: 20px;
             margin-top: 20px;
             color: #333; /* Dark gray text color for the content section */
+            text-align: center; /* Center align the content */
         }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 20px; /* Adjust font size for smaller screens */
+            }
+
+            .navbar-logo {
+                width: 25px; /* Adjusted the width of the logo for smaller screens */
+            }
+        }
+
         @media (max-width: 768px) {
             .navbar-nav {
                 margin-top: 10px; /* Adjust spacing for smaller screens */
             }
         }
+        .update-log-container {
+            text-align: left;
+        }
+        .update-log-container {
+            text-align: left;
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+        }
+
     </style>
 </head>
+
 <body>
     <!-- NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          <img src="https://cdn-icons-png.flaticon.com/512/2092/2092721.png" alt="Workshop Logo" class="navbar-logo">
-          Jumjum's Workshop
+        <a class="navbar-brand" href="/index.html">
+            <img src="https://cdn-icons-png.flaticon.com/512/2092/2092721.png" class="navbar-logo">
+            Jumjum's Workshop
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,23 +91,37 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Doodles</a>
+                    <a class="nav-link" href="/gallery.html">Gallery</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Scrap</a>
+                    <a class="nav-link" href="/scrap.html">Scrap</a>
                 </li>
             </ul>
         </div>
     </nav>
-    <!-- Content Section -->
+    <!-- First Container -->
     <div class="container mt-4">
         <div class="row">
             <div class="col-lg-12">
-                <h2>Main Content Section</h2>
-                <p>This is where your main content goes. Modify this as needed.</p>
+                <h2>Welcome to the workshop!!</h2>
+                <p>Just a project for funsies, really just silly</p>
+                <img src="https://raw.githubusercontent.com/Jamiro-MR/workshopArchive/main/imgs/mei.png?token=GHSAT0AAAAAACMJWOSISU5OCDPI7KK2HVVWZMVWO2Q">
+            </div>
+        </div>
+    </div>
+    <!-- Additional Separation -->
+    <div style="margin-bottom: 3em;"></div>
+    <!-- Second Container for Update Logs -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="text-center">Update Log</h2>
+                <div id="updateLog" class="update-log-container">
+                    <!-- Update log entries will be added dynamically here using JavaScript -->
+                </div>
             </div>
         </div>
     </div>
@@ -86,5 +129,45 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- JavaScript to load update log dynamically -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Specify the path to your update log text file
+            var updateLogFilePath = "updateLog.txt";
+            // Reference to the update log container
+            var updateLogContainer = document.getElementById("updateLog");
+            // Fetch the content of the text file
+            fetch(updateLogFilePath)
+                .then(response => response.text())
+                .then(text => {
+                    // Split the text into lines
+                    var lines = text.split('\n');
+                    // Filter out empty lines
+                    lines = lines.filter(line => line.trim() !== "");
+                    // Create the update log text element
+                    var updateLogTextElement = document.createElement("div");
+                    // Flag to check if content is added before a date
+                    var contentAddedBeforeDate = false;
+                    // Add entries with line breaks before dates
+                    for (var i = 0; i < lines.length; i++) {
+                        if (lines[i].match(/^\d{2}\/\d{2}\/\d{4}/)) {
+                            // If it's a date and content is added before, add a line break before it
+                            if (contentAddedBeforeDate) {
+                                updateLogTextElement.innerHTML += '<br>';
+                            }
+                            // Reset the flag for the next iteration
+                            contentAddedBeforeDate = false;
+                        } else {
+                            // If it's not a date, set the flag to true to indicate content before a date
+                            contentAddedBeforeDate = true;
+                        }
+                        updateLogTextElement.innerHTML += lines[i] + '<br>';
+                    }
+                    // Append the text element to the update log container
+                    updateLogContainer.appendChild(updateLogTextElement);
+                })
+                .catch(error => console.error('Error fetching the file:', error));
+        });
+    </script>
 </body>
 </html>
